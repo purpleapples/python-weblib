@@ -1,0 +1,10 @@
+import urllib.request
+from urllib.request import urlopen
+
+
+
+response =urlopen("https://movie.naver.com/movie/sdb/rank/rmovie.nhn")
+
+body = response.read()
+html = body.decode('euc-kr')
+print(html)
