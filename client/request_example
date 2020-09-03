@@ -1,10 +1,25 @@
 import urllib.request
-from urllib.request import urlopen
-
-
-
-response =urlopen("https://movie.naver.com/movie/sdb/rank/rmovie.nhn")
+from urllib.request import urlopen, Request
+from urllib.parse import urlencode
+# GET
+response = urlopen("https://movie.naver.com/movie/sdb/rank/rmovie.nhn")
 
 body = response.read()
 html = body.decode('euc-kr')
+#print(html)
+
+# POST
+
+data = {'id':'kickscar',
+        'pw':'1234',}
+
+data = urlencode(data).encode('utf-8')
+
+request = Request('https://nid.naver.com/nidlogin.login', data)
+request.add_header('Content-type','text/html')
+
+http_response = urlopen(request)
+body = http_response.read()
+html = body.decode('utf-8')
 print(html)
+
